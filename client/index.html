@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>Log In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script type="text/javascript" src="libs/vue.js"></script>
+    <script type="text/javascript" src="libs/axios.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+
+<body class="LogBack">
+
+
+
+    <div class="Log">
+        <div class="LogTitle">LOG IN</div> <br />
+
+
+        <div class="label">Username</div>
+        <input class="inp" id="userName" type="text"> <br /><br />
+
+        <div class="label">Password</div>
+        <input class="inp" id="userPass" type="password"> <br /><br />
+
+
+        <div id="comd"></div>
+        
+        <button class="buttonS1" onclick="LogIn()"> LOG IN </button>
+
+
+    </div>
+
+    <div  class="LogLower">
+        <br /><br /><br /><br />
+        <button class="buttonSignUp" onclick="GoToSignUp()"> SIGN UP </button>
+    </div>
+
+
+
+    <script src="src/app.js"></script>
+</body>
+</html>
