@@ -8,44 +8,13 @@ body {
   margin: 0 auto 0 auto;
 }
 
-.user-list {
-  padding: 0px;
-  list-style-type: none;
-}
+
 
 .title {
   background-color: #0053c0;
   padding: 15px 15px 5px 10px;
   color: white;
   font-size: 20px;
-}
-
-.user-row-header {
-  padding: 20px 0px 5px 0px;
-  text-align: left;
-  font-weight: bold;
-  border-bottom: 2px solid #0053c0;
-}
-
-.user-row {
-  border-bottom: 1px solid #e9e9e9;
-  padding: 15px 0px 5px 0px;
-  text-align: left;
-}
-
-.user-row:hover {
-  background-color: #f3f3f3;
-  cursor: pointer;
-}
-
-.user-name {
-  width: 49%;
-  display: inline-block;
-}
-
-.user-city {
-  width: 49%;
-  display: inline-block;
 }
 
 
@@ -117,58 +86,8 @@ body {
     margin-right: 20px;
 }
 
-table.gametab {
-    font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid #1C6EA4;
-    background-color: #8BDBEE;
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-}
-
-    table.gametab td, table.gametab th {
-        border: 2px solid #000000;
-        padding: 3px 2px;
-    }
-
-    table.gametab tbody td {
-        font-size: 15px;
-    }
-
-    table.gametab tr:nth-child(even) {
-        background: #8799F5;
-    }
-
-    table.gametab thead {
-        background: #1C6EA4;
-        background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-        background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-        background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%);
-        border-bottom: 2px solid #444444;
-    }
-
-    table.gametab thead th {
-            font-size: 15px;
-            font-weight: bold;
-            color: #FFFFFF;
-            text-align: center;
-            border-left: 2px solid #D0E4F5;
-        }
 
 
-    table.gametab thead th:first-child 
-    {
-        border-left: none;     
-    }
-
-
-
-.label2 {
-    display: inline;
-    color: black;
-    font-size: 18px;
-    margin-right: 20px;
-}
 
 .inp{
     border-width: 2px;
@@ -192,29 +111,6 @@ table.gametab {
     text-decoration: none; 
 }
 
-.label3 {
-    display: inline;
-    color: black;
-    font-size: 18px;
-    margin-left: 20px;
-    margin-right: 5px;
-}
-
-.btnOpt {
-    background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-    background-color: #007dc1;
-    border-radius: 20px;
-    border: 4px solid #124d77;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 15px;
-    padding: 10px 28px;
-    text-decoration: none;
-    margin-left: 10px;
-    margin-right: 10px;
-}
 
 .buttonSignUp {
     box-shadow: 0px 0px 0px 2px #9e30ff;
@@ -240,25 +136,6 @@ table.gametab {
     top: 80%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-
-.btnManage {
-    box-shadow: 0px 0px 0px 2px #1b18f0;
-    background: linear-gradient(to bottom, #1635e3 5%, #1252e8 100%);
-    background-color: #1635e3;
-    border-radius: 11px;
-    border: 3px solid #1589e8;
-    display: inline-block;
-    cursor: pointer;
-    color: #ffffff;
-    font-family: Arial;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 15px 34px;
-    text-decoration: none;
-
-    margin-left: 30px;
 }
 
 
