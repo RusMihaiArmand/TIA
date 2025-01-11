@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>ADMIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <script type="text/javascript" src="libs/vue.js"></script>
+    <script type="text/javascript" src="libs/axios.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body class="backg" onload="RefreshTable()">
+
+
+
+    <button class="btnBack" onclick="Back()"> BACK </button> <br />
+
+
+    <div class="label3">ID</div> <input id="gameId" type="number">
+    <div class="label3">Taken by</div> <input id="gameTakenBy" type="text"></br></br>
+
+
+    <div class="label3">Title</div> <input id="gameName" type="text">
+    <div class="label3">Publisher</div> <input id="gamePublisher" type="text">
+    <div class="label3">Genre</div> <input id="gameGenre" type="text"></br></br>
+
+    <div class="label3">Release Date</div> <input id="gameDate" type="number">
+    <div class="label3">Price</div> <input id="gamePrice" type="number">
+    <div class="label3">Description</div> <input id="gameDesc" type="text"></br></br>
+
+    <div class="label3">Console</div> <input id="gameConsole" type="text">
+    <div class="label3">Status</div> <input id="gameStatus" type="text">
+    <div class="label3">Notes</div> <input id="gameNotes" type="text"></br></br>
+
+
+
+    <div id="comd"></div>
+    <button class="btnOpt" onclick="GetGame()"> Find game by id </button>
+    <button class="btnOpt" onclick="AddGame()"> Add new game </button>
+    <button class="btnOpt" onclick="UpdateGame()"> Update </button>
+    <button class="btnOpt" onclick="DeleteGame()"> Del </button>
+
+
+    <br /><br /><br />
+    <div class="label2">Title</div>
+    <input id="gameSearchTitle" /> <br />
+
+    <div class="label2">Genre</div>
+    <input id="gameSearchGenre" /> <br />
+
+    <div class="label2">Console</div>
+    <input id="gameSearchConsole" /> <br /><br />
+
+    <button class="buttonS1" onclick="RefreshTable()"> Refresh </button><br /><br />
+
+
+    <div>
+        <table id="game-table" class="gametab">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Game</th>
+                    <th>Publisher</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Console</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+            </tbody>
+
+
+        </table>
+    </div>
+
+
+
+
+
+    <script src="src/app.js"></script>
+</body>
+</html>
