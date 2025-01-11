@@ -4,34 +4,34 @@ var currentRow = null;
 var data = {}
 
 function run() {
-  new Vue({
-    //el: '#app',
-    data: {
-        users: [],
-        games: [],
-        borrows:[]
-    },
-    created: function () {
-        this.getUsers().then(response => (this.users = response.data));
-        this.getGames().then(response => (this.games = response.data));
-        this.getBorrows().then(response => (this.borrows = response.data));
-    },
-    methods: {
-      getUsers: function() {
-          return axios.get('http://localhost:3000/users');
+    new Vue({
+        //el: '#app',
+        data: {
+            users: [],
+            games: [],
+            borrows: []
         },
-        getGames: function () {
-            return axios.get('http://localhost:3000/games');
+        created: function () {
+            this.getUsers().then(response => (this.users = response.data));
+            this.getGames().then(response => (this.games = response.data));
+            this.getBorrows().then(response => (this.borrows = response.data));
         },
-        getBorrows: function () {
-            return axios.get('http://localhost:3000/borrowings');
+        methods: {
+            getUsers: function () {
+                return axios.get('http://localhost:3000/users');
+            },
+            getGames: function () {
+                return axios.get('http://localhost:3000/games');
+            },
+            getBorrows: function () {
+                return axios.get('http://localhost:3000/borrowings');
+            }
         }
-    }
-  });
+    });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  run();
+    run();
 });
 
 
@@ -67,7 +67,7 @@ function GetBorrow() {
 
 
 
-function GetGame(){
+function GetGame() {
 
     let idText = $('#gameId').val();
     let id = parseInt(idText);
@@ -92,7 +92,7 @@ function GetGame(){
 
     axios.get('http://localhost:3000/games/' + id).then(
         (response) => {
-  
+
             if (response.data === 'not found') {
                 $("#comd").html("No game found");
             }
@@ -113,7 +113,7 @@ function GetGame(){
 
                 GetBorrow();
             }
-            
+
         }
     );
 }
@@ -166,7 +166,7 @@ function UpdateGame() {
         notes: document.querySelector("#gameNotes").value
     }
 
-    axios.get('http://localhost:3000/games/' +obj.id , obj).then(
+    axios.get('http://localhost:3000/games/' + obj.id, obj).then(
         (response) => {
             if (response.data === 'not found') {
 
@@ -202,23 +202,36 @@ function DeleteGame() {
     $("#comd").html("Wait");
     let idText = $('#gameId').val();
     let id = parseInt(idText);
+   
 
     axios.get('http://localhost:3000/games/' + id).then(
         (response) => {
             if (response.data === 'not found') {
 
                 $("#comd").html("Game not found");
-
+    
             }
             else {
 
-                DeleteGame2(id);
+                var obj = {
+                    gameid: id,
+                    user: localStorage.getItem("currentUser")
+                }
+        
+                axios.delete('http://localhost:3000/borrowings/' + obj.gameid, obj).then(
+                    (response) => {
+                        DeleteGame2(id);
+                    }
+                );
 
             }
         }
     );
 
-  
+
+ 
+
+
 }
 
 function DeleteGame2(id) {
@@ -345,8 +358,7 @@ function UpdateUser() {
         else
             $("#comd").html("Password too long");
     }
-    else
-    { 
+    else {
 
         axios.get('http://localhost:3000/users/' + obj.name).then(
             (response) => {
@@ -396,17 +408,17 @@ function UpdateUser2(obj) {
 
 function DeleteUserFinal(userN) {
 
-        axios.delete('http://localhost:3000/users/' + userN).then(
-            (response) => {
-                $("#comd").html("User deleted");
+    axios.delete('http://localhost:3000/users/' + userN).then(
+        (response) => {
+            $("#comd").html("User deleted");
 
-                document.querySelector("#userPass").value = "";
-                document.querySelector("#newuserPass").value = "";
+            document.querySelector("#userPass").value = "";
+            document.querySelector("#newuserPass").value = "";
 
-                Back();
-            }
-        );
-   
+            Back();
+        }
+    );
+
 
 }
 
@@ -438,7 +450,7 @@ function DeleteUser(userN) {
 
     );
 
-   
+
 }
 
 
@@ -451,23 +463,22 @@ function getBorrows2() {
 function HowMany(userN) {
     var cont = 0;
 
-    axios.get('http://localhost:3000/borrowings' ).then(
+    axios.get('http://localhost:3000/borrowings').then(
         (response) => {
 
-            for (let i = 0; i < response.data.length; i++)
-            {
+            for (let i = 0; i < response.data.length; i++) {
                 if (response.data[i].user == userN) {
                     cont = cont + 1;
                 }
-                
+
             }
 
             return cont;
         }
 
     );
-   
-    
+
+
 }
 
 
@@ -501,7 +512,7 @@ function BorrowGame() {
                 $("#comd").html("Can't borrow more games");
             }
             else {
-                if(ok==true)
+                if (ok == true)
                     BorrowGame2();
                 else
                     $("#comd").html("Can't borrow that game");
@@ -534,14 +545,14 @@ function GameStatusUpdate(id) {
 
 
 
-        axios.get('http://localhost:3000/games/' + id).then(
-            (response) => {
+    axios.get('http://localhost:3000/games/' + id).then(
+        (response) => {
 
-                var obj = response.data;
-                obj.status = "unavailable";
-                GameStatusUpdate2(obj);
-            }
-        );
+            var obj = response.data;
+            obj.status = "unavailable";
+            GameStatusUpdate2(obj);
+        }
+    );
 
 
 }
@@ -571,13 +582,12 @@ function ReturnGame() {
     axios.get('http://localhost:3000/borrowings').then(
         (response) => {
 
-            
+
             var ok = false;
 
             for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].user == userN && response.data[i].gameid == gameid)
-                {
-                    ok=true
+                if (response.data[i].user == userN && response.data[i].gameid == gameid) {
+                    ok = true
                 }
             }
 
@@ -585,7 +595,7 @@ function ReturnGame() {
                 ReturnGame2();
             else
                 $("#comd").html("You don't have that game");
-            
+
 
         }
     );
@@ -765,7 +775,7 @@ function RefreshTable() {
 
     var numb = table.rows.length;
 
-    for (var i = numb-1; i >=1; i--) {
+    for (var i = numb - 1; i >= 1; i--) {
 
         table.deleteRow(i);
     }
@@ -791,7 +801,7 @@ function RefreshTable() {
     let searchConsole = $('#gameSearchConsole').val();
     searchConsole = searchConsole.toLowerCase();
 
-    axios.get('http://localhost:3000/games' ).then(
+    axios.get('http://localhost:3000/games').then(
         (response) => {
 
             if (response.data === 'not found') {
@@ -803,7 +813,7 @@ function RefreshTable() {
 
                 for (var i = 0; i < allgames.length; i++) {
 
-                   // console.log(allgames[i].name);
+                    // console.log(allgames[i].name);
 
                     let foundTitle = allgames[i].name;
                     foundTitle = foundTitle.toLowerCase();
@@ -816,17 +826,17 @@ function RefreshTable() {
 
                         var row = table.insertRow(table.length);
 
-                        var cell1  = row.insertCell(0);
-                        var cell2  = row.insertCell(1);
-                        var cell3  = row.insertCell(2);
-                        var cell4  = row.insertCell(3);
-                        var cell5  = row.insertCell(4);
-                        var cell6  = row.insertCell(5);
-                        var cell7  = row.insertCell(6);
-                        var cell8  = row.insertCell(7);
-                        var cell9  = row.insertCell(8);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var cell4 = row.insertCell(3);
+                        var cell5 = row.insertCell(4);
+                        var cell6 = row.insertCell(5);
+                        var cell7 = row.insertCell(6);
+                        var cell8 = row.insertCell(7);
+                        var cell9 = row.insertCell(8);
                         var cell10 = row.insertCell(9);
-  
+
 
                         cell1.innerHTML = allgames[i].id;
                         cell2.innerHTML = allgames[i].name;
@@ -841,7 +851,7 @@ function RefreshTable() {
                     }
 
                 }
-   
+
             }
 
 
